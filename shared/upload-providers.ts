@@ -341,6 +341,60 @@ export const UploadProviders: UploadProvider[] = [
 		},
 	},
 	{
+		id: "img.tnb.moe",
+		displayName: "img.tnb.moe",
+		requiresToken: true,
+		validTtl: [
+			{
+				id: "1week",
+				displayName: "1 Week",
+				value: "P7D",
+			},
+			{
+				id: "3days",
+				displayName: "3 Days",
+				value: "P3D",
+			},
+			{
+				id: "1day",
+				displayName: "1 Day",
+				value: "P1D",
+			},
+			{
+				id: "forever",
+				displayName: "Keep Forever",
+				value: "-",
+				default: true,
+			}
+		],
+		supportNote: "Supported files: Images",
+		async upload(file: File, ttl: string, token?: string) {
+			const uploadTTL = this.validTtl?.find(t => t.id === ttl);
+
+			const payload = new FormData();
+			payload.append("format", "txt");
+			payload.append("key", token!);
+			payload.append("source", file);
+
+			if (uploadTTL && uploadTTL.id !== "forever") {
+				payload.append("expiration", uploadTTL.value);
+			}
+
+			const response = await fetch("https://img.tnb.moe/api/1/upload", {
+				method: "POST",
+				body: payload,
+			});
+
+			const url = await response.text();
+
+			if (!response.ok || !url.startsWith("http")) {
+				throw new Error(url ?? "Unknown Error");
+			}
+
+			return url;
+		},
+	},
+	{
 		id: "ptpimg",
 		displayName: "ptpimg",
 		requiresToken: true,
