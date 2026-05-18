@@ -62,7 +62,7 @@ const copyPatterns = (isProduction) => [
 		to: "fonts/font-awesome/[name][ext]",
 	},
 	{
-		from: resolveFromRoot("node_modules/@phosphor-icons/web/src/*/Phosphor.*").replace(
+		from: resolveFromRoot("node_modules/@phosphor-icons/web/src/*/Phosphor*.*").replace(
 			/\\/g,
 			"/"
 		),
@@ -260,6 +260,7 @@ function applyDevelopmentOverrides(config) {
 		createForkTsCheckerPlugin(false),
 		new VueLoaderPlugin(),
 		createMiniCssExtractPlugin(),
+		new CopyPlugin({patterns: copyPatterns(false)}),
 		new NormalModuleReplacementPlugin(
 			/js(\/|\\)socket\.js/,
 			resolveFromRoot("scripts/noop.js")
