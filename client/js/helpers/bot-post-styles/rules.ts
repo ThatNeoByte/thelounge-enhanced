@@ -41,6 +41,7 @@ export const botPostStyleRules: BotPostStyleRule[] = [
 
 			return {
 				displayNick: "New-Request 📺",
+				senderType: "bot",
 				text: `\x04${"00BCD4"}[${groups.type}]\x0f ${groups.name} \x02(${groups.bounty} BON)\x0f - ${groups.link}`,
 				classes: ["bot-post--darkpeers-request"],
 			};

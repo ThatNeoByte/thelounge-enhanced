@@ -314,7 +314,7 @@ export function generateUserContextMenu(
 	store: TypedStore,
 	channel: ClientChan,
 	network: ClientNetwork,
-	user: Pick<ClientUser, "nick" | "modes">
+	user: Pick<ClientUser, "nick" | "modes"> & {senderType?: "bot"}
 ): ContextMenuItem[] {
 	const currentChannelUser: ClientUser | Record<string, never> = channel
 		? channel.users.find((u) => u.nick === network.nick) || {}
@@ -375,7 +375,7 @@ export function generateUserContextMenu(
 			}
 		}
 
-		if (channel.torrentSite && !channel.torrentSite.disabled) {
+		if (channel.torrentSite && !channel.torrentSite.disabled && user.senderType !== "bot") {
 			const trackerProfile = {
 				label: `Tracker Profile`,
 				type: "item",

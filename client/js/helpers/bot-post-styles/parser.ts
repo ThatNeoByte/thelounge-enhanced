@@ -14,6 +14,7 @@ export function applyBotPostStyles(originalMessage: SharedMsg) {
 	const classes = new Set<string>();
 	let messageText = originalMessage.text;
 	let displayNick = originalMessage.from?.displayNick;
+	let senderType = originalMessage.from?.senderType;
 
 	for (const rule of botPostStyleRules) {
 		if (matchesRule(rule.when, sender, originalMessage.text, originalMessage)) {
@@ -36,10 +37,14 @@ export function applyBotPostStyles(originalMessage: SharedMsg) {
 			if (transformResult?.displayNick) {
 				displayNick = transformResult.displayNick;
 			}
+
+			if (transformResult?.senderType) {
+				senderType = transformResult.senderType;
+			}
 		}
 	}
 
-	if (classes.size === 0 && messageText === originalMessage.text && displayNick === originalMessage.from?.displayNick) {
+	if (classes.size === 0 && messageText === originalMessage.text && displayNick === originalMessage.from?.displayNick && senderType === originalMessage.from?.senderType) {
 		return originalMessage;
 	}
 
@@ -54,6 +59,7 @@ export function applyBotPostStyles(originalMessage: SharedMsg) {
 			message.from = {
 				...message.from,
 				displayNick,
+				senderType,
 			};
 		}
 	}

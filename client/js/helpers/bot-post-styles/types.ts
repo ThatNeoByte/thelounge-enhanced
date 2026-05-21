@@ -9,6 +9,7 @@ export type BotPostStyleTransformResult = {
 	text?: string;
 	classes?: string[];
 	displayNick?: string;
+	senderType?: "bot";
 };
 
 export type BotPostStyleRule = {

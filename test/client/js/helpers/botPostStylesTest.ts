@@ -77,6 +77,7 @@ describe("bot post styles helper", () => {
 			"\x0400BCD4[WEB-DL]\x0f Squatters \x02(10000.00 BON)\x0f - https://darkpeers.org/requests/1689"
 		);
 		expect(styledMessage.from?.displayNick).to.equal("New-Request 📺");
+		expect(styledMessage.from?.senderType).to.equal("bot");
 		expect(styledMessage.botStyles).to.include("bot-post--darkpeers-request");
 	});
 });

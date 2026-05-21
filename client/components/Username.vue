@@ -1,7 +1,7 @@
 <template>
 	<span
 		:class="['user', {[nickColor]: store.state.settings.coloredNicks}, {active: active}]"
-		:data-name="user.nick"
+		:data-name="user.displayNick || user.nick"
 		role="button"
 		v-on="onHover ? {mouseenter: hover} : {}"
 		@click.prevent="openContextMenu"
