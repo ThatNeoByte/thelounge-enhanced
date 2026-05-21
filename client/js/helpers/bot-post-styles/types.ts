@@ -8,6 +8,7 @@ export type BotPostStyleMatcher = {
 export type BotPostStyleTransformResult = {
 	text?: string;
 	classes?: string[];
+	displayNick?: string;
 };
 
 export type BotPostStyleRule = {

@@ -40,7 +40,8 @@ export const botPostStyleRules: BotPostStyleRule[] = [
 			}
 
 			return {
-				text: `<New-Request 📺> [color=#00BCD4][${groups.type}][/color] ${groups.name} [b](${groups.bounty} BON)[/b] - ${groups.link}`,
+				displayNick: "New-Request 📺",
+				text: `\x04${"00BCD4"}[${groups.type}]\x0f ${groups.name} \x02(${groups.bounty} BON)\x0f - ${groups.link}`,
 				classes: ["bot-post--darkpeers-request"],
 			};
 		},

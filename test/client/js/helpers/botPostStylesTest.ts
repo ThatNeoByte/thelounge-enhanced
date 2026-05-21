@@ -74,8 +74,9 @@ describe("bot post styles helper", () => {
 		const styledMessage = applyBotPostStyles(message);
 
 		expect(styledMessage.text).to.equal(
-			"<New-Request 📺> [color=#00BCD4][WEB-DL][/color] Squatters [b](10000.00 BON)[/b] - https://darkpeers.org/requests/1689"
+			"\x0400BCD4[WEB-DL]\x0f Squatters \x02(10000.00 BON)\x0f - https://darkpeers.org/requests/1689"
 		);
+		expect(styledMessage.from?.displayNick).to.equal("New-Request 📺");
 		expect(styledMessage.botStyles).to.include("bot-post--darkpeers-request");
 	});
 });

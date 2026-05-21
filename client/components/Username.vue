@@ -89,6 +89,10 @@ export default defineComponent({
 
 		// Allow adjusting nick display via setting
 		const displayNick = computed(() => {
+			if (props.user.displayNick) {
+				return props.user.displayNick;
+			}
+
 			const umode = mode.value ?? "";
 			const nick = props.user.nick!;
 
