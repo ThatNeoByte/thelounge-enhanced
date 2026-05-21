@@ -537,6 +537,12 @@ export default {
 			domain: 'infinityhd.net',
 		},
 		{
+			abbreviation: 'YUS',
+			name: 'Yu-Scene',
+			host: 'irc.yu-scene.net',
+			domain: 'yu-scene.net',
+		},
+		{
 			disabled: true, // Disable ANT support, as it does not use the username for the profile URL
 			abbreviation: 'ANT',
 			name: 'Anthelion',
