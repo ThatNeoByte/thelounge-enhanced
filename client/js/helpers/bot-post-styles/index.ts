@@ -1,0 +1,1 @@
+export {applyBotPostStyles} from "./parser";

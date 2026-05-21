@@ -1902,6 +1902,17 @@ textarea.input {
 	position: relative;
 }
 
+#chat .msg.bot-post {
+	padding-left: 8px;
+	margin-left: -3px;
+	box-shadow: inset 3px 0 0 var(--link-color);
+	background: linear-gradient(90deg, rgb(80 166 86 / 6%), transparent 60%);
+}
+
+#chat .msg.bot-post .from {
+	font-weight: 600;
+}
+
 #chat .unread-marker {
 	position: relative;
 	text-align: center;

@@ -3,6 +3,8 @@
 		:id="'msg-' + prettyMessage.id"
 		:class="[
 			'msg',
+			{ 'bot-post': prettyMessage.botStyles?.length },
+			prettyMessage.botStyles || [],
 			{
 				self: prettyMessage.self,
 				highlight: prettyMessage.highlight,
@@ -14,6 +16,7 @@
 		:data-command="prettyMessage.command"
 		:data-from="prettyMessage.from && (prettyMessage.from.shoutbox ? prettyMessage.from.original_nick : prettyMessage.from.nick)"
 		:data-bridged="prettyMessage.from?.shoutbox"
+		:data-bot-post-styles="prettyMessage.botStyles?.join(' ')"
 	>
 		<span
 			aria-hidden="true"
@@ -177,6 +180,7 @@ import type {ClientChan, ClientMessage, ClientNetwork} from "../js/types";
 import {useStore} from "../js/store";
 import { MessageType } from "../../shared/types/msg";
 import { parser as shoutboxParser } from "../js/helpers/shoutbox-bridge/parser";
+import {applyBotPostStyles} from "../js/helpers/bot-post-styles";
 import { ChanType } from "../../shared/types/chan";
 
 MessageTypes.ParsedMessage = ParsedMessage;
@@ -231,11 +235,17 @@ export default defineComponent({
 
 		// IRC Bridge formatter
 		const prettyMessage = computed(() => {
-			if (props.channel?.type !== ChanType.CHANNEL || !store.state.settings.beautifyBridgedMessages || props.message.type !== MessageType.MESSAGE) {
-				return props.message;
+			let message = props.message;
+
+			if (
+				props.channel?.type === ChanType.CHANNEL &&
+				store.state.settings.beautifyBridgedMessages &&
+				props.message.type === MessageType.MESSAGE
+			) {
+				message = shoutboxParser(props.message);
 			}
 
-			return shoutboxParser(props.message);
+			return applyBotPostStyles(message);
 		});
 
 		const canReply = computed(() => {

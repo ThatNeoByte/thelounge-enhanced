@@ -91,6 +91,7 @@ export type SharedMsg = {
 	id: number;
 	previews?: LinkPreview[];
 	text?: string;
+	botStyles?: string[];
 	type?: MessageType;
 	self?: boolean;
 	time: Date;
