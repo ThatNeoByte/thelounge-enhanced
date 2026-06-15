@@ -151,9 +151,9 @@ export const matchers: Matcher[] = [
 	{
 		type: "basic",
 		name: "SkipTheCommercial",
-		description: "[WEB] nick: message",
+		description: "nick: message",
 		matches: [ "unit3dbridge" ],
-		regex: /^\[WEB\] (?<nick>[^\]]+): (?<content>.*)/,
+		regex: /^(?<nick>[^\]]+): (?<content>.*)/,
 		transform (message) {
 			return typedGroups(message.text!.match(this.regex));
 		}
