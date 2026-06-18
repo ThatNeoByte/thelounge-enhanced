@@ -543,6 +543,12 @@ export default {
 			domain: 'yu-scene.net',
 		},
 		{
+			abbreviation: 'ZNTH',
+			name: 'Zenith',
+			host: 'irc.znth.cx',
+			domain: 'znth.cx',
+		},
+		{
 			disabled: true, // Disable ANT support, as it does not use the username for the profile URL
 			abbreviation: 'ANT',
 			name: 'Anthelion',
