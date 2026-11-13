@@ -43,6 +43,8 @@ export type UserInMessage = Partial<SharedUser> & {
 	mode: string;
 	shoutbox?: boolean;
 	original_nick?: string;
+	displayNick?: string;
+	senderType?: "bot";
 };
 
 export type LinkPreview = {
@@ -91,6 +93,7 @@ export type SharedMsg = {
 	id: number;
 	previews?: LinkPreview[];
 	text?: string;
+	botStyles?: string[];
 	type?: MessageType;
 	self?: boolean;
 	time: Date;

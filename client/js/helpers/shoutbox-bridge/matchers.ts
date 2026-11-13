@@ -160,6 +160,16 @@ export const matchers: Matcher[] = [
 	},
 	{
 		type: "basic",
+		name: "SkipTheCommercial",
+		description: "nick: message",
+		matches: [ "unit3dbridge" ],
+		regex: /^(?<nick>[^\]]+): (?<content>.*)/,
+		transform (message) {
+			return typedGroups(message.text!.match(this.regex));
+		}
+	},
+	{
+		type: "basic",
 		name: "RocketHD",
 		description: "🛰️<nick>: <message>",
 		matches: [ "rocketnouncer" ],

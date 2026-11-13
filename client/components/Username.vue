@@ -1,7 +1,7 @@
 <template>
 	<span
 		:class="['user', {[nickColor]: store.state.settings.coloredNicks}, {active: active}]"
-		:data-name="user.nick"
+		:data-name="user.displayNick || user.nick"
 		role="button"
 		v-on="onHover ? {mouseenter: hover} : {}"
 		@click.prevent="openContextMenu"
@@ -89,6 +89,10 @@ export default defineComponent({
 
 		// Allow adjusting nick display via setting
 		const displayNick = computed(() => {
+			if (props.user.displayNick) {
+				return props.user.displayNick;
+			}
+
 			const umode = mode.value ?? "";
 			const nick = props.user.nick!;
 
