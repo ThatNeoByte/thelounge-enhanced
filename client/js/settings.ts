@@ -139,6 +139,9 @@ const defaultConfig = {
 	uploadTTL: {
 		default: "",
 	},
+	uploadTTLCustom: {
+		default: "",
+	},
 	uploadURL: {
 		default: "",
 	},
@@ -196,7 +199,10 @@ const defaultConfig = {
 	},
 	enableReplyToMessage: {
 		default: true,
-	}
+	},
+	replyToMessagePlainText: {
+		default: false,
+	},
 };
 
 export const config = normalizeConfig(defaultConfig);
