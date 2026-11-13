@@ -66,6 +66,16 @@ export const matchers: Matcher[] = [
 	},
 	{
 		type: "basic",
+		name: "DreadVault",
+		description: "<<nick>> <message>",
+		matches: ["dreadvaultbot"],
+		regex: /^<(?<nick>[^>]+?)> (?<content>.*)/,
+		transform(message) {
+			return typedGroups(message.text!.match(this.regex));
+		},
+	},
+	{
+		type: "basic",
 		name: "HomiesHelpDesk",
 		description: "[username] (platform): message",
 		matches: [ "bbot" ],
@@ -164,6 +174,16 @@ export const matchers: Matcher[] = [
 		description: "🛰️<nick>: <message>",
 		matches: [ "rocketnouncer" ],
 		regex: /^🛰️(?<nick>[^:]+?): (?<content>.*)/v,
+		transform (message) {
+			return typedGroups(message.text!.match(this.regex));
+		}
+	},
+	{
+		type: "basic",
+		name: "SkipTheCommercial",
+		description: "nick: message",
+		matches: [ "unit3dbridge" ],
+		regex: /^(?<nick>[^\]]+): (?<content>.*)/,
 		transform (message) {
 			return typedGroups(message.text!.match(this.regex));
 		}

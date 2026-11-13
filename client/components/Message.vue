@@ -235,6 +235,8 @@ export default defineComponent({
 
 		// IRC Bridge formatter
 		const prettyMessage = computed(() => {
+			if (props.channel?.type !== ChanType.CHANNEL || !store.state.settings.beautifyBridgedMessages || (props.message.type !== MessageType.MESSAGE && props.message.type !== MessageType.ACTION)) {
+				return props.message;
 			let message = props.message;
 
 			if (
@@ -272,7 +274,11 @@ export default defineComponent({
 				return;
 			}
 
-			eventbus.emit("message:reply", `\x02${nick}\x02: \x0314,99"\x1D${content}\x1D"\x03`);
+			const replyText = store.state.settings.replyToMessagePlainText
+				? `${nick}: (re: "${content}") `
+				: `\x02${nick}\x02: \x0314,99"\x1D${content}\x1D"\x03 `;
+
+			eventbus.emit("message:reply", replyText);
 		};
 
 		return {
